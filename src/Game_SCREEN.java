@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,7 +27,16 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 	private byte pointer_val; // pointer value for writing and checking functions
 	private int organsToPut = 0; 
 	JPanel mainpanel = new JPanel(new BorderLayout()); //panels,labels and buttons
-	JPanel gamepanel = new JPanel(new GridLayout(9, 9,5,5));
+	JPanel gamepanel = new JPanel(new GridLayout(3,3));
+	JPanel gamehouse1 = new JPanel(new GridLayout(3,3,5,5));
+	JPanel gamehouse2 = new JPanel(new GridLayout(3,3,5,5));
+	JPanel gamehouse3 = new JPanel(new GridLayout(3,3,5,5));
+	JPanel gamehouse4= new JPanel(new GridLayout(3,3,5,5));
+	JPanel gamehouse5 = new JPanel(new GridLayout(3,3,5,5));
+	JPanel gamehouse6 = new JPanel(new GridLayout(3,3,5,5));
+	JPanel gamehouse7= new JPanel(new GridLayout(3,3,5,5));
+	JPanel gamehouse8= new JPanel(new GridLayout(3,3,5,5));
+	JPanel gamehouse9= new JPanel(new GridLayout(3,3,5,5));
 	
 	JPanel eastpnl = new JPanel(new BorderLayout());
 	JPanel upperpnl = new JPanel();
@@ -91,7 +101,7 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 		organ_group.add(liver);
 		organ_group.add(lung);
 		organ_group.add(marrow);
-		organ_group.add(he);
+		organ_group.add( he);
 		
 		selectbuttonpanel.add(blood);
 		selectbuttonpanel.add(heart);
@@ -117,10 +127,22 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 		
 		
 		add(mainpanel);
-		
+		mainpanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+		gamepanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, false));
+		gamehouse1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, false));
+		gamehouse2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, false));
+		gamehouse3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, false));
+		gamehouse4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, false));
+		gamehouse5.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, false));
+		gamehouse6.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, false));
+		gamehouse7.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, false));
+		gamehouse8.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, false));
+		gamehouse9.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, false));
 		
 		mainpanel.add(gamepanel, BorderLayout.CENTER);
-		
+		selectbuttonpanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		upperpnl.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		upperpnl.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, false));
 		upperpnl.add(selectbuttonpanel);
 		eastpnl.add(upperpnl, BorderLayout.NORTH);
 		eastpnl.add(actionpanel, BorderLayout.CENTER);
@@ -154,22 +176,21 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 			duzpanel.setBackground(Color.PINK);
 			gamepanel.setBackground(Color.PINK);
 		}
+		actionpanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, false));
 		scorepanel.add(scorelabel);
 		scorepanel.add(score);
+		
 		actionpanel.add(scorepanel);
 		
 		if(level instanceof Normal){ // if user chooses Normal mode, we add a panel in order to count mistakes
 			mistakepanel.add(mistakeLabel);
 			mistakepanel.add(mistake);
 			actionpanel.add(mistakepanel);
-			
 		}
 		else{
 			actionpanel.add(duzpanel);
 		}
-
-		endButton.addActionListener(new ActionListener() { // Action Listener declarations and creations
-			
+		endButton.addActionListener(new ActionListener() { // Action Listener declarations and creations	
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				level.FailScreen(timeCount.getDisplay(),user.getName(),level.getScore().getscore(),user);
@@ -177,30 +198,42 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 				dispose();
 			}
 		});
-		
 		actionpanel.add(endButton);
 	}
 	private void gamearadesign(MODE lvl){ // game area design ( 9x9 section ) with buttons
+		this.level = lvl;
+		gamepanel.add(gamehouse1);
+		gamepanel.add(gamehouse2);
+		gamepanel.add(gamehouse3);
+		gamepanel.add(gamehouse4);
+		gamepanel.add(gamehouse5);
+		gamepanel.add(gamehouse6);
+		gamepanel.add(gamehouse7);
+		gamepanel.add(gamehouse8);
+		gamepanel.add(gamehouse9);
 		for (int i = 0; i <9; i++) {
 			for (int j = 0; j < 9; j++) {
-				this.level = lvl;
-				Item_AREA area = new Item_AREA( level.getArea()[i][j]-1, level.getMask()[i][j],i,j);
+				housecontrol(i+1,j+1,true);
 				if(level.getMask()[i][j] == true){
 					organsToPut++;
 				}
-				gamepanel.add(area);
 			}
 		}remaning.setText(organsToPut+"");
 	}
-	public void housecontrol(int line,int column){ // 3x3 bonus point controller method
+	public void housecontrol(int line,int column,boolean mode){ // Mode==false:game area design----Mode==true:3x3 bonus point controller method
 		if(line>=1&&line<=3&&column>=1&&column<=3){
 			int a=0;
+			if(mode){
+				Item_AREA area = new Item_AREA( level.getArea()[line-1][column-1]-1, level.getMask()[line-1][column-1],line-1,column-1);
+				gamehouse1.add(area);
+			}else{
 			for(int l=1;l<=3;l++){
 				for(int c=1;c<=3;c++){
 					if(level.getMask()[l-1][c-1]==false){
 						a++;
 					}
 				}
+			}
 			}
 			if(a==9){
 				level.getScore().housescore();
@@ -208,18 +241,27 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 		}
 		if(line>=4&&line<=6&&column>=1&&column<=3){
 			int a=0;
+			if(mode){
+				Item_AREA area = new Item_AREA( level.getArea()[line-1][column-1]-1, level.getMask()[line-1][column-1],line-1,column-1);
+				gamehouse2.add(area);
+			}else{
 			for(int l=4;l<=6;l++){
 				for(int c=1;c<=3;c++){
 					if(level.getMask()[l-1][c-1]==false){
 						a++;
 					}
 				}
+			}
 			}
 			if(a==9){
 				level.getScore().housescore();
 			}
 		}if(line>=7&&line<=9&&column>=1&&column<=3){
 			int a=0;
+			if(mode){
+				Item_AREA area = new Item_AREA( level.getArea()[line-1][column-1]-1, level.getMask()[line-1][column-1],line-1,column-1);
+				gamehouse3.add(area);
+			}else{
 			for(int l=7;l<=9;l++){
 				for(int c=1;c<=3;c++){
 					if(level.getMask()[l-1][c-1]==false){
@@ -227,23 +269,33 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 					}
 				}
 			}
+			}
 			if(a==9){
 				level.getScore().housescore();
 			}
 		}if(line>=1&&line<=3&&column>=4&&column<=6){
 			int a=0;
-			for(int l=1;l<=3;l++){
-				for(int c=4;c<=6;c++){
+			if(mode){
+				Item_AREA area = new Item_AREA( level.getArea()[line-1][column-1]-1, level.getMask()[line-1][column-1],line-1,column-1);
+				gamehouse4.add(area);
+			}else{
+			for(int l=4;l<=6;l++){
+				for(int c=1;c<=3;c++){
 					if(level.getMask()[l-1][c-1]==false){
 						a++;
 					}
 				}
+			}
 			}
 			if(a==9){
 				level.getScore().housescore();
 			}
 		}if(line>=4&&line<=6&&column>=4&&column<=6){
 			int a=0;
+			if(mode){
+				Item_AREA area = new Item_AREA( level.getArea()[line-1][column-1]-1, level.getMask()[line-1][column-1],line-1,column-1);
+				gamehouse5.add(area);
+			}else{
 			for(int l=4;l<=6;l++){
 				for(int c=4;c<=6;c++){
 					if(level.getMask()[l-1][c-1]==false){
@@ -251,17 +303,23 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 					}
 				}
 			}
+			}
 			if(a==9){
 				level.getScore().housescore();
 			}
 		}if(line>=7&&line<=9&&column>=4&&column<=6){
 			int a=0;
-			for(int l=7;l<=9;l++){
-				for(int c=4;c<=6;c++){
+			if(mode){
+				Item_AREA area = new Item_AREA( level.getArea()[line-1][column-1]-1, level.getMask()[line-1][column-1],line-1,column-1);
+				gamehouse6.add(area);
+			}else{
+			for(int l=4;l<=6;l++){
+				for(int c=7;c<=9;c++){
 					if(level.getMask()[l-1][c-1]==false){
 						a++;
 					}
 				}
+			}
 			}
 			if(a==9){
 				level.getScore().housescore();
@@ -269,6 +327,10 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 		}
 		if(line>=1&&line<=3&&column>=7&&column<=9){
 			int a=0;
+			if(mode){
+				Item_AREA area = new Item_AREA( level.getArea()[line-1][column-1]-1, level.getMask()[line-1][column-1],line-1,column-1);
+				gamehouse7.add(area);
+			}else{
 			for(int l=1;l<=3;l++){
 				for(int c=7;c<=9;c++){
 					if(level.getMask()[l-1][c-1]==false){
@@ -276,11 +338,16 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 					}
 				}
 			}
+			}
 			if(a==9){
 				level.getScore().housescore();
 			}
 		}if(line>=4&&line<=6&&column>=7&&column<=9){
 			int a=0;
+			if(mode){
+				Item_AREA area = new Item_AREA( level.getArea()[line-1][column-1]-1, level.getMask()[line-1][column-1],line-1,column-1);
+				gamehouse8.add(area);
+			}else{
 			for(int l=4;l<=6;l++){
 				for(int c=7;c<=9;c++){
 					if(level.getMask()[l-1][c-1]==false){
@@ -288,18 +355,24 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 					}
 				}
 			}
+			}
 			if(a==9){
 				level.getScore().housescore();
 			}
 		}
 		if(line>=7&&line<=9&&column>=7&&column<=9){
 			int a=0;
+			if(mode){
+				Item_AREA area = new Item_AREA( level.getArea()[line-1][column-1]-1, level.getMask()[line-1][column-1],line-1,column-1);
+				gamehouse9.add(area);
+			}else{
 			for(int l=7;l<=9;l++){
 				for(int c=7;c<=9;c++){
-					if(level.getMask()[l][c]==false){
+					if(level.getMask()[l-1][c-1]==false){
 						a++;
 					}
 				}
+			}
 			}
 			if(a==9){
 				level.getScore().housescore();
@@ -309,7 +382,7 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 	public void controlnum(int line,int column){ // score control and equalization
 				level.getMask()[line][column]=false;
 				System.out.println(line+""+column);
-				housecontrol(line+1, column+1);
+				housecontrol(line+1, column+1,false);
 			   level.getScore().oneboxscore();
 			   int a=0;
 			   for(int i=0;i<9;i++){
