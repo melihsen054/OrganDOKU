@@ -1,3 +1,3 @@
-# OrganDOKU
+# OrganDOKU - Web version
 
-READ IT
+This is a Spring Boot web project.
