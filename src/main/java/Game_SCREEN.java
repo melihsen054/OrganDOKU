@@ -3,8 +3,6 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;

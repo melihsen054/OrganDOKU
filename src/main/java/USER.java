@@ -7,7 +7,7 @@ public class USER implements Serializable{
 	private String name = "Mr/Mrs"; //field
 	private int age=0;
 	private boolean gender=true;
-	private String username="sarý çizmeli mehmet aða";
+	private String username="sari cizmeli mehmet aga";
 	private String password;
 	private File file;
 	

@@ -72,9 +72,9 @@ public class Intro_SCREEN extends JFrame implements DESIGN{
 		signIn();
 		signUp();
 		
-		ObjectInputStream input = new ObjectInputStream(new FileInputStream(new File("src/users.dat")));
+		ObjectInputStream input = new ObjectInputStream(new FileInputStream(new File("src/main/java/users.dat")));
 		//allUsers = (ArrayList<USER>) input.readObject();
-		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(new File("src/users.dat")));
+		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(new File("src/main/java/users.dat")));
 		setTitle("ORGANDOKU v.1.0");
 		
 		setSize(300, 80);
@@ -116,10 +116,10 @@ public class Intro_SCREEN extends JFrame implements DESIGN{
 				validate();
 			}
 		});
-		login.addActionListener(new ActionListener() {// buraya bakýlacak
+		login.addActionListener(new ActionListener() {// buraya bakilacak
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				boolean usernamestate=  false; // encapsulation örneði için fieldda private tanýmlanabilir (sonradan sýfýrlamak þartýyla)
+				boolean usernamestate=  false; // encapsulation ornegi icin fieldda private tanimlanabilir (sonradan sifirlamak sartiyla)
 				boolean passwordstate = false;
 				
 				

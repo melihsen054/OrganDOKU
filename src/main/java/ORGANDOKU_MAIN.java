@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 	Batuhan YILMAZ 150715001
 	Ali Mertcan KARAMAN 150716074
-	Melih ÞEN 150714004
+	Melih SEN 150714004
 
 This ORGANDOKU program brings a brain teaser to you!
 
