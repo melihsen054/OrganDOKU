@@ -1,3 +1,5 @@
+package org.deneme.organdoku.screen;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -25,7 +27,7 @@ import javax.swing.JTextField;
 
 /* This class designs the introduction screen and makes the adjustments for the user signing and action functions. */
 
-public class Intro_SCREEN extends JFrame implements DESIGN{
+public class Intro_SCREEN extends JFrame implements DESIGN {
 	JPanel mainpanel =new JPanel(new BorderLayout()); // field variable initializations
 	JPanel buttonpanel= new JPanel();
 	JPanel signinpanel= new JPanel(new BorderLayout());
@@ -68,12 +70,12 @@ public class Intro_SCREEN extends JFrame implements DESIGN{
 		design();
 	}
 	
-	public void design() throws FileNotFoundException, IOException{ //implemented from DESIGN interface
+	public void design() throws FileNotFoundException, IOException{ //implemented from org.deneme.organdoku.screen.DESIGN interface
 		signIn();
 		signUp();
 		
 		ObjectInputStream input = new ObjectInputStream(new FileInputStream(new File("src/main/java/users.dat")));
-		//allUsers = (ArrayList<USER>) input.readObject();
+		//allUsers = (ArrayList<org.deneme.organdoku.screen.USER>) input.readObject();
 		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(new File("src/main/java/users.dat")));
 		setTitle("ORGANDOKU v.1.0");
 		

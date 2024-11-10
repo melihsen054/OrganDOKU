@@ -1,8 +1,9 @@
+package org.deneme.organdoku.screen;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Normal extends MODE { // keeps the database and uses extended methods from MODE
+public class Normal extends MODE { // keeps the database and uses extended methods from org.deneme.organdoku.screen.MODE
 	private byte[][] areaNormal;
 	private boolean[][] masksNormal;
 	

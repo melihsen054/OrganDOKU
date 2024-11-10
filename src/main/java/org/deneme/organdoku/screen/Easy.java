@@ -1,3 +1,5 @@
+package org.deneme.organdoku.screen;
+
 public class Easy extends MODE{
 	private byte[][] areaNormal;
 	

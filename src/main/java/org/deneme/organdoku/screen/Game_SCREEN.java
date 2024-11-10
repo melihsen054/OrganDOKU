@@ -1,3 +1,5 @@
+package org.deneme.organdoku.screen;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -52,7 +54,7 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 	JLabel mistake= new JLabel("0");
 	private int mistakes=0;
 	JPanel scorepanel= new JPanel();
-	JLabel scorelabel= new JLabel("Score :");
+	JLabel scorelabel= new JLabel("org.deneme.organdoku.screen.Score :");
 	JLabel score= new JLabel("0");
 	JPanel duzpanel = new JPanel();
 	JScrollBar bar = new JScrollBar();
@@ -68,7 +70,7 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 	Toggle_Writer marrow = new Toggle_Writer(7);
 	Toggle_Writer he = new Toggle_Writer(8);
 ///////////////////////////////////////////////////////////////////////
-	MODE level; //this class involves a MODE variable
+	MODE level; //this class involves a org.deneme.organdoku.screen.MODE variable
 	USER user;
 	JFrame endFrame = new JFrame();
 	JButton endButton = new JButton("GIVE UP");
@@ -115,7 +117,7 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 		
 		gamearadesign(level);
 		
-		timelabel.setFont(fnt); // "fnt" constant comes from DESIGN interface
+		timelabel.setFont(fnt); // "fnt" constant comes from org.deneme.organdoku.screen.DESIGN interface
 		remaninglabel.setFont(fnt);
 		remaning.setFont(fnt);
 		mistakeLabel.setFont(fnt);
@@ -180,7 +182,7 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 		
 		actionpanel.add(scorepanel);
 		
-		if(level instanceof Normal){ // if user chooses Normal mode, we add a panel in order to count mistakes
+		if(level instanceof Normal){ // if user chooses org.deneme.organdoku.screen.Normal mode, we add a panel in order to count mistakes
 			mistakepanel.add(mistakeLabel);
 			mistakepanel.add(mistake);
 			actionpanel.add(mistakepanel);
@@ -453,7 +455,7 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 					
 					}
 					else{
-						if(level instanceof DKA){ //this is the fail screen setup for DKA, because one mistake stops the game
+						if(level instanceof DKA){ //this is the fail screen setup for org.deneme.organdoku.screen.DKA, because one mistake stops the game
 							timeCount.clock.stop();
 							dispose();
 							((DKA) level).FailScreen(timeCount.getDisplay(),user.getName(),level.getScore().getscore(),user);//dka method gelecek

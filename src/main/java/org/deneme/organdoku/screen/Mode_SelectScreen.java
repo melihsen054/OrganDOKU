@@ -1,3 +1,5 @@
+package org.deneme.organdoku.screen;
+
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -12,7 +14,7 @@ import javax.swing.JPanel;
 
 public class Mode_SelectScreen extends JFrame{ // manages the mode selections
 	
-	private JLabel header = new JLabel("CHOOSE GAME MODE");
+	private JLabel header = new JLabel("CHOOSE GAME org.deneme.organdoku.screen.MODE");
 	
 	private JButton nrml = new JButton();
 	private JButton dka = new JButton();
@@ -108,7 +110,7 @@ public class Mode_SelectScreen extends JFrame{ // manages the mode selections
 				
 				btnPnl.removeAll();
 				btnPnl.setLayout(new GridLayout(3,1,10,10));
-				header.setText("CHOOSE DIFFICULTY - DKA");
+				header.setText("CHOOSE DIFFICULTY - org.deneme.organdoku.screen.DKA");
 				btnPnl.add(dkaEasy);
 				btnPnl.add(dkaMedium);
 				btnPnl.add(dkaHard);
