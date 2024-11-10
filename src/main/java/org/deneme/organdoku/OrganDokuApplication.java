@@ -1,12 +1,11 @@
 package org.deneme.organdoku;
 
-import org.deneme.organdoku.screen.Intro_SCREEN;
+import org.deneme.organdoku.screen.IntroScreen;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 
 @SpringBootApplication
@@ -31,7 +30,7 @@ public class OrganDokuApplication implements CommandLineRunner {
                 "ORGANDOKU provides a good-looking, sleek user interface and easy playability.";
 
         JOptionPane.showMessageDialog(new JFrame(), welcome);
-        Intro_SCREEN frame= new Intro_SCREEN();
+        IntroScreen frame= new IntroScreen();
 
 
         //JFrame frame = new JFrame("Spring Boot Swing App");

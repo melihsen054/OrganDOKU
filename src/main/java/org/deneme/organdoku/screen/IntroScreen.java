@@ -27,7 +27,7 @@ import javax.swing.JTextField;
 
 /* This class designs the introduction screen and makes the adjustments for the user signing and action functions. */
 
-public class Intro_SCREEN extends JFrame implements DESIGN {
+public class IntroScreen extends JFrame implements Design {
 	JPanel mainpanel =new JPanel(new BorderLayout()); // field variable initializations
 	JPanel buttonpanel= new JPanel();
 	JPanel signinpanel= new JPanel(new BorderLayout());
@@ -62,11 +62,11 @@ public class Intro_SCREEN extends JFrame implements DESIGN {
 	JButton signup = new JButton("SIGN UP");
 	JButton cancelsignup=new JButton("CANCEL");
 	//////////////////////////////////////////////////////
-	USER userlogged;
+	User userlogged;
 	
-	ArrayList <USER> allUsers = new <USER> ArrayList();
+	ArrayList <User> allUsers = new <User> ArrayList();
 	
-	public Intro_SCREEN() throws FileNotFoundException, IOException{ //constructor
+	public IntroScreen() throws FileNotFoundException, IOException{ //constructor
 		design();
 	}
 	
@@ -136,7 +136,7 @@ public class Intro_SCREEN extends JFrame implements DESIGN {
 					
 				if(usernamestate&&passwordstate){
 					JOptionPane.showMessageDialog(new JPanel(),"Successfully logged in.");
-					Mode_SelectScreen selectscreen =new Mode_SelectScreen(userlogged);
+					ModeSelectScreen selectscreen =new ModeSelectScreen(userlogged);
 					dispose();
 				}else{
 					uname.setText("");
@@ -200,7 +200,7 @@ public class Intro_SCREEN extends JFrame implements DESIGN {
 						}
 					}	
 					if(usernamestate&&passwordstate&&namestate&&agestate&&passwordauthstate&&genderstate){
-						USER user= new USER(namefield.getText(),Integer.parseInt(agefield.getText()), male.isSelected()
+						User user= new User(namefield.getText(),Integer.parseInt(agefield.getText()), male.isSelected()
 								, username.getText(), password.getText());
 						allUsers.add(user);
 						try {

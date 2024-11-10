@@ -3,7 +3,7 @@ package org.deneme.organdoku.screen;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Normal extends MODE { // keeps the database and uses extended methods from org.deneme.organdoku.screen.MODE
+public class Normal extends Mode { // keeps the database and uses extended methods from org.deneme.organdoku.screen.MODE
 	private byte[][] areaNormal;
 	private boolean[][] masksNormal;
 	
@@ -95,12 +95,12 @@ public class Normal extends MODE { // keeps the database and uses extended metho
 		 
 		}
 	@Override
-	public void EndScreen(JPanel score,JPanel timelabel,JPanel mistakeLabel,USER user) {
+	public void EndScreen(JPanel score, JPanel timelabel, JPanel mistakeLabel, User user) {
 		super.EndScreen(score,timelabel,mistakeLabel,user);
 		
 	}
 	@Override
-	protected void FailScreen(JLabel disp,String name,double puan,USER user){
+	protected void FailScreen(JLabel disp, String name, double puan, User user){
 		super.FailScreen(disp, name, puan, user);
 		
 	}

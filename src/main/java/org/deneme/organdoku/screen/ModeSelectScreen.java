@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Mode_SelectScreen extends JFrame{ // manages the mode selections
+public class ModeSelectScreen extends JFrame{ // manages the mode selections
 	
 	private JLabel header = new JLabel("CHOOSE GAME org.deneme.organdoku.screen.MODE");
 	
@@ -31,9 +31,9 @@ public class Mode_SelectScreen extends JFrame{ // manages the mode selections
 	private JButton dkaMedium = new JButton("MEDIUM");
 	private JButton dkaHard = new JButton("HARD");
 	
-	private USER user;
+	private User user;
 	
-	public Mode_SelectScreen(USER user){
+	public ModeSelectScreen(User user){
 		this.user = user;
 		header.setFont(new Font("Bodoni MT Black",30,30));
 		setLayout(new BorderLayout());
@@ -75,9 +75,9 @@ public class Mode_SelectScreen extends JFrame{ // manages the mode selections
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			
-				MODE easy = new Normal();
+				Mode easy = new Normal();
 				easy.setDiff(0);
-				Game_SCREEN screen = new Game_SCREEN(easy,user);	
+				GameScreen screen = new GameScreen(easy,user);
 				dispose();
 			}
 		});
@@ -85,9 +85,9 @@ public class Mode_SelectScreen extends JFrame{ // manages the mode selections
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MODE medium = new Normal();
+				Mode medium = new Normal();
 				medium.setDiff(1);
-				Game_SCREEN screen = new Game_SCREEN(medium,user);	
+				GameScreen screen = new GameScreen(medium,user);
 				dispose();
 			}
 		});
@@ -95,9 +95,9 @@ public class Mode_SelectScreen extends JFrame{ // manages the mode selections
 	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MODE hard = new Normal();
+				Mode hard = new Normal();
 				hard.setDiff(2);
-				Game_SCREEN screen = new Game_SCREEN(hard,user);		
+				GameScreen screen = new GameScreen(hard,user);
 				dispose();
 			}
 		});
@@ -126,9 +126,9 @@ public class Mode_SelectScreen extends JFrame{ // manages the mode selections
 			public void actionPerformed(ActionEvent e) {
 				
 
-				MODE dka_easy = new DKA();
+				Mode dka_easy = new DontKillAnybody();
 				dka_easy.setDiff(0);
-				Game_SCREEN screen = new Game_SCREEN(dka_easy,user);		
+				GameScreen screen = new GameScreen(dka_easy,user);
 				dispose();
 				
 			}
@@ -138,9 +138,9 @@ public class Mode_SelectScreen extends JFrame{ // manages the mode selections
 			@Override
 			public void actionPerformed(ActionEvent e) {
 	
-				MODE dka_medium = new DKA();
+				Mode dka_medium = new DontKillAnybody();
 				dka_medium.setDiff(1);
-				Game_SCREEN screen = new Game_SCREEN(dka_medium,user);	
+				GameScreen screen = new GameScreen(dka_medium,user);
 				
 				dispose();
 				
@@ -150,9 +150,9 @@ public class Mode_SelectScreen extends JFrame{ // manages the mode selections
 	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MODE dka_hard = new DKA();
+				Mode dka_hard = new DontKillAnybody();
 				dka_hard.setDiff(2);
-				Game_SCREEN screen = new Game_SCREEN(dka_hard,user);		
+				GameScreen screen = new GameScreen(dka_hard,user);
 				dispose();
 
 			}

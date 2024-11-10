@@ -20,7 +20,7 @@ import javax.swing.JToggleButton;
 	
 */
 
-public class Game_SCREEN extends JFrame implements DESIGN{
+public class GameScreen extends JFrame implements Design {
 	private String [] iconpaths={"src/Heart.jpg","src/Blood.png","src/Colon.png","src/Cornea.png",// paths for icon
 			"src/Kidney.png","src/Liver.png","src/Lung.png","src/Marrow.jpg","src/this_man.jpg"};
 	private ImageIcon icon;
@@ -70,12 +70,12 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 	Toggle_Writer marrow = new Toggle_Writer(7);
 	Toggle_Writer he = new Toggle_Writer(8);
 ///////////////////////////////////////////////////////////////////////
-	MODE level; //this class involves a org.deneme.organdoku.screen.MODE variable
-	USER user;
+	Mode level; //this class involves a org.deneme.organdoku.screen.MODE variable
+	User user;
 	JFrame endFrame = new JFrame();
 	JButton endButton = new JButton("GIVE UP");
 ///////////////////////////////////////////////////////////////////////
-	public Game_SCREEN(MODE lvl,USER user) {
+	public GameScreen(Mode lvl, User user) {
 		level = lvl;
 		level.setScoretoZero();
 		System.out.println(lvl.getscore());
@@ -200,7 +200,7 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 		});
 		actionpanel.add(endButton);
 	}
-	private void gamearadesign(MODE lvl){ // game area design ( 9x9 section ) with buttons
+	private void gamearadesign(Mode lvl){ // game area design ( 9x9 section ) with buttons
 		this.level = lvl;
 		gamepanel.add(gamehouse1);
 		gamepanel.add(gamehouse2);
@@ -447,18 +447,18 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 							dispose();
 						
 						}
-						else if(level instanceof DKA){
-							((DKA) level).EndScreen(scorepanel,timepanel,mistakepanel,user);
+						else if(level instanceof DontKillAnybody){
+							((DontKillAnybody) level).EndScreen(scorepanel,timepanel,mistakepanel,user);
 							dispose();
 						}
 					}
 					
 					}
 					else{
-						if(level instanceof DKA){ //this is the fail screen setup for org.deneme.organdoku.screen.DKA, because one mistake stops the game
+						if(level instanceof DontKillAnybody){ //this is the fail screen setup for org.deneme.organdoku.screen.DKA, because one mistake stops the game
 							timeCount.clock.stop();
 							dispose();
-							((DKA) level).FailScreen(timeCount.getDisplay(),user.getName(),level.getScore().getscore(),user);//dka method gelecek
+							((DontKillAnybody) level).FailScreen(timeCount.getDisplay(),user.getName(),level.getScore().getscore(),user);//dka method gelecek
 						}
 						else{//
 						level.getScore().wrongscore();
