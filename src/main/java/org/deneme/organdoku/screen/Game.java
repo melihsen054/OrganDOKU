@@ -1,9 +1,10 @@
 package org.deneme.organdoku.screen;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -26,8 +27,10 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /* This class designs the introduction screen and makes the adjustments for the user signing and action functions. */
+@Component
+public class Game extends JFrame {
+	Font fnt = new Font("Bodoni MT Black",30, 30); // constant variable for unary font design
 
-public class IntroScreen extends JFrame implements Design {
 	JPanel mainpanel =new JPanel(new BorderLayout()); // field variable initializations
 	JPanel buttonpanel= new JPanel();
 	JPanel signinpanel= new JPanel(new BorderLayout());
@@ -66,7 +69,21 @@ public class IntroScreen extends JFrame implements Design {
 	
 	ArrayList <User> allUsers = new <User> ArrayList();
 	
-	public IntroScreen() throws FileNotFoundException, IOException{ //constructor
+	public Game() throws FileNotFoundException, IOException{ //constructor
+		String welcome = "This ORGANDOKU program brings a brain teaser to you!\n"+
+				"ORGANDOKU has two different game modes: GENERIC ORGANDOKU and DKA (DON'T KILL ANYBODY)\n"+
+				"ORGANDOKU mode is very similar to generic sudoku structure, with some twist. For every completed 3x3 section,\n"+
+				"(which are represented as PATIENTS),row and column, you will gain BONUS points:\n"+
+				"3x3 SECTION = + 20 PTS\n"+
+				"ROW & COLUMN = + 15 PTS\n"+
+				"On the contrary, you will be penalized for every MISTAKE you will perform.\n"+
+				"MISTAKE = - 5 PTS\n"+
+				"If your score drops below - 50, YOU WILL SCREW UP!\n"+
+				"DKA (DON'T KILL ANYBODY) mode is a crueler mode, which doesn't let you kill a PATIENT! \nWhich means, YOU CAN'T MAKE ANY MISTAKE!\n"+
+				"Point regulation is the same for both modes.\n"+
+				"ORGANDOKU provides a good-looking, sleek user interface and easy playability.";
+
+		JOptionPane.showMessageDialog(new JFrame(), welcome);
 		design();
 	}
 	

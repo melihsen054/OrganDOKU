@@ -1,8 +1,6 @@
 package org.deneme.organdoku.screen;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +18,9 @@ import javax.swing.JToggleButton;
 	
 */
 
-public class GameScreen extends JFrame implements Design {
+public class GameScreen extends JFrame {
+	Font fnt = new Font("Bodoni MT Black",30, 30); // constant variable for unary font design
+
 	private String [] iconpaths={"src/Heart.jpg","src/Blood.png","src/Colon.png","src/Cornea.png",// paths for icon
 			"src/Kidney.png","src/Liver.png","src/Lung.png","src/Marrow.jpg","src/this_man.jpg"};
 	private ImageIcon icon;
@@ -112,7 +112,8 @@ public class GameScreen extends JFrame implements Design {
 		selectbuttonpanel.add(lung);
 		selectbuttonpanel.add(marrow);
 		selectbuttonpanel.add(he);
-	}@Override
+	}
+
 	public void design() {
 		
 		gamearadesign(level);
