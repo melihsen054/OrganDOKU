@@ -10,26 +10,27 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import javax.swing.*;
 
 @SpringBootApplication
-public class OrganDokuApplication implements ApplicationRunner {
+public class SudokuApplication implements ApplicationRunner {
     private final Game game;
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(OrganDokuApplication.class).headless(false).run(args);
+        new SpringApplicationBuilder(SudokuApplication.class).headless(false).run(args);
     }
 
     @Autowired
-    public OrganDokuApplication(Game game) {
+    public SudokuApplication(Game game) {
         this.game = game;
     }
 
     @Override
     public void run(ApplicationArguments args) {
+        int height = game.getGraphicsConfiguration().getBounds().height/2;
+        int width = game.getGraphicsConfiguration().getBounds().width/2;
+
+        game.setTitle("ORGANDOKU v.1.0");
         game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setSize(300,300);
-        //JPanel panel = new JPanel(new BorderLayout());
-        //JTextField text = new JTextField("Spring Boot can be used with Swing apps");
-        //panel.add(text, BorderLayout.CENTER);
-        //frame.setContentPane(panel);
-        //frame.setVisible(true);
+        game.setSize(width,height);
+        game.setLocationRelativeTo(null);
+        game.setVisible(true);
     }
 }

@@ -1,7 +1,5 @@
 package org.deneme.organdoku.screen;
 
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.awt.*;
@@ -16,27 +14,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.*;
 
-/* This class designs the introduction screen and makes the adjustments for the user signing and action functions. */
 @Component
 public class Game extends JFrame {
-	Font fnt = new Font("Bodoni MT Black",30, 30); // constant variable for unary font design
+	//Font fnt = new Font("Bodoni MT Black",30, 30); // constant variable for unary font design
 
-	JPanel mainpanel =new JPanel(new BorderLayout()); // field variable initializations
-	JPanel buttonpanel= new JPanel();
-	JPanel signinpanel= new JPanel(new BorderLayout());
-	JPanel signuppanel= new JPanel(new GridLayout(7, 2,5,5));
-	JButton signinbutton= new JButton("SIGN IN");
-	JButton signupbutton= new JButton("SIGN UP");
+	private final JPanel mainPanel = new Panel();
+	private final JPanel welcomePanel = new Panel();
+	private final JPanel buttonPanel = new Panel();
+	private final JPanel signInPanel = new JPanel(new BorderLayout());
+	private final JPanel signUpPanel = new JPanel(new GridLayout(7, 2,5,5));
+	private final JButton signInButton = new JButton("SIGN IN");
+	private final JButton signUpButton = new JButton("SIGN UP");
 	/////////////////SIGN IN//////////////////////////////
 	JPanel sinpanel1 = new JPanel();
 	JPanel sinpanel2 = new JPanel();
@@ -69,21 +59,32 @@ public class Game extends JFrame {
 	
 	ArrayList <User> allUsers = new <User> ArrayList();
 	
-	public Game() throws FileNotFoundException, IOException{ //constructor
+	public Game() throws IOException{ //constructor
 		String welcome = "This ORGANDOKU program brings a brain teaser to you!\n"+
 				"ORGANDOKU has two different game modes: GENERIC ORGANDOKU and DKA (DON'T KILL ANYBODY)\n"+
-				"ORGANDOKU mode is very similar to generic sudoku structure, with some twist. For every completed 3x3 section,\n"+
+				"ORGANDOKU mode is very similar to generic sudoku structure, with some twist. " +
+				"For every completed 3x3 section,\n"+
 				"(which are represented as PATIENTS),row and column, you will gain BONUS points:\n"+
 				"3x3 SECTION = + 20 PTS\n"+
 				"ROW & COLUMN = + 15 PTS\n"+
 				"On the contrary, you will be penalized for every MISTAKE you will perform.\n"+
 				"MISTAKE = - 5 PTS\n"+
 				"If your score drops below - 50, YOU WILL SCREW UP!\n"+
-				"DKA (DON'T KILL ANYBODY) mode is a crueler mode, which doesn't let you kill a PATIENT! \nWhich means, YOU CAN'T MAKE ANY MISTAKE!\n"+
+				"DKA (DON'T KILL ANYBODY) mode is a crueler mode, which doesn't let you kill a PATIENT! \n" +
+				"Which means, YOU CAN'T MAKE ANY MISTAKE!\n"+
 				"Point regulation is the same for both modes.\n"+
 				"ORGANDOKU provides a good-looking, sleek user interface and easy playability.";
 
-		JOptionPane.showMessageDialog(new JFrame(), welcome);
+		//JOptionPane.showMessageDialog(new JFrame(), welcome);
+		this.add(mainPanel);
+		//this.pack(); // TODO
+		mainPanel.add(welcomePanel, BorderLayout.CENTER);
+		mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+		JTextArea welcomeText = new JTextArea(welcome);
+		welcomeText.setEditable(false);
+		welcomePanel.add(welcomeText);
+		buttonPanel.add(signInButton);
+		buttonPanel.add(signUpButton);
 		design();
 	}
 	
@@ -94,24 +95,16 @@ public class Game extends JFrame {
 		ObjectInputStream input = new ObjectInputStream(new FileInputStream(new File("src/main/java/users.dat")));
 		//allUsers = (ArrayList<org.deneme.organdoku.screen.USER>) input.readObject();
 		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(new File("src/main/java/users.dat")));
-		setTitle("ORGANDOKU v.1.0");
 		
-		setSize(300, 80);
-		setLocationRelativeTo(null);
-		setVisible(true);
-		
-		add(mainpanel);
-		mainpanel.add(buttonpanel, BorderLayout.NORTH);
-		buttonpanel.add(signinbutton );
-		buttonpanel.add(signupbutton);
-		
-		signinbutton.addActionListener(new ActionListener() {
+		signInButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mainpanel.remove(signinpanel);
-				mainpanel.remove(signuppanel);
-				mainpanel.add(signinpanel,BorderLayout.CENTER);
+				mainPanel.remove(welcomePanel);
+				mainPanel.remove(buttonPanel);
+				mainPanel.remove(signInPanel);
+				mainPanel.remove(signUpPanel);
+				mainPanel.add(signInPanel,BorderLayout.CENTER);
 				
 				setSize(350, 175);
 				setLocationRelativeTo(null);
@@ -120,14 +113,14 @@ public class Game extends JFrame {
 			}	
 
 		});
-		signupbutton.addActionListener(new ActionListener() {
+		signUpButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				mainpanel.remove(signinpanel);
-				mainpanel.remove(signuppanel);
-				mainpanel.add(signuppanel,BorderLayout.CENTER);
+				mainPanel.remove(signInPanel);
+				mainPanel.remove(signUpPanel);
+				mainPanel.add(signUpPanel,BorderLayout.CENTER);
 				
 				setSize(700, 600);
 				setLocationRelativeTo(null);
@@ -164,8 +157,8 @@ public class Game extends JFrame {
 		cancellog.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mainpanel.remove(signinpanel);
-				mainpanel.remove(signuppanel);
+				mainPanel.remove(signInPanel);
+				mainPanel.remove(signUpPanel);
 				setSize(300, 80);
 				setLocationRelativeTo(null);
 				repaint();
@@ -226,8 +219,8 @@ public class Game extends JFrame {
 							e1.printStackTrace();
 						}
 						JOptionPane.showMessageDialog(null, message);
-						mainpanel.remove(signuppanel);
-						mainpanel.add(signinpanel,BorderLayout.CENTER);
+						mainPanel.remove(signUpPanel);
+						mainPanel.add(signInPanel,BorderLayout.CENTER);
 						
 						
 						setSize(350, 175);
@@ -273,8 +266,8 @@ public class Game extends JFrame {
 		cancelsignup.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mainpanel.remove(signinpanel);
-				mainpanel.remove(signuppanel);
+				mainPanel.remove(signInPanel);
+				mainPanel.remove(signUpPanel);
 				
 				setSize(300, 80);
 				setLocationRelativeTo(null);
@@ -302,29 +295,29 @@ public class Game extends JFrame {
 		sinpanel2.add(pw);
 		sinpanel2.add(login);
 		sinpanel2.add(cancellog);
-		signinpanel.add(sinpanel2,BorderLayout.CENTER);
+		signInPanel.add(sinpanel2,BorderLayout.CENTER);
 		
 		
 	}
 	private void signUp() {
-		signuppanel.add(name);
-		signuppanel.add(namefield);
-		signuppanel.add(age);
-		signuppanel.add(agefield);
-		signuppanel.add(gender);
+		signUpPanel.add(name);
+		signUpPanel.add(namefield);
+		signUpPanel.add(age);
+		signUpPanel.add(agefield);
+		signUpPanel.add(gender);
 		gendergroup.add(male);
 		gendergroup.add(female);
 		genderpanel.add(male);
 		genderpanel.add(female);
-		signuppanel.add(genderpanel);
-		signuppanel.add(usernameLabel);
-		signuppanel.add(username);
-		signuppanel.add(passwordLabel);
-		signuppanel.add(password);
-		signuppanel.add(passwordAuthLabel);
-		signuppanel.add(passwordAuth);
-		signuppanel.add(signup);
-		signuppanel.add(cancelsignup);
+		signUpPanel.add(genderpanel);
+		signUpPanel.add(usernameLabel);
+		signUpPanel.add(username);
+		signUpPanel.add(passwordLabel);
+		signUpPanel.add(password);
+		signUpPanel.add(passwordAuthLabel);
+		signUpPanel.add(passwordAuth);
+		signUpPanel.add(signup);
+		signUpPanel.add(cancelsignup);
 	
 	}
 	
