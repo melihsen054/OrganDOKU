@@ -1,3 +1,5 @@
+package org.deneme.organdoku.screen;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -10,12 +12,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-public abstract class MODE {
+public abstract class Mode {
 		private Score score=new Score() ;
 		private byte area [][] = new byte [9][9];
 		public boolean mask[][]= new boolean [9][9];
 		
-		public MODE(){
+		public Mode(){
 
 		}
 		
@@ -44,7 +46,7 @@ public abstract class MODE {
 		}
 		 abstract void setDiff(int check);
 
-		public void EndScreen(JPanel score,JPanel timelabel,JPanel mistakeLabel,USER user){ // displays the end screen
+		public void EndScreen(JPanel score, JPanel timelabel, JPanel mistakeLabel, User user){ // displays the end screen
 			JFrame frame = new JFrame();
 			frame.setLayout(new BorderLayout());
 			JPanel northpnl= new JPanel(new FlowLayout());
@@ -76,7 +78,7 @@ public abstract class MODE {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Mode_SelectScreen select= new Mode_SelectScreen(user);
+					ModeSelectScreen select= new ModeSelectScreen(user);
 					setScoretoZero();
 					frame.dispose();
 				}
@@ -91,7 +93,7 @@ public abstract class MODE {
 				}
 			});
 		}
-		protected void FailScreen(JLabel disp,String name,double puan,USER user){
+		protected void FailScreen(JLabel disp, String name, double puan, User user){
 			JFrame failed = new JFrame("You screwed up...");
 			JLabel screwLbl = new JLabel("You screwed up, "+name);
 			screwLbl.setFont(new Font("Bodoni MT Black",32,32));
@@ -120,7 +122,7 @@ public abstract class MODE {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Mode_SelectScreen scrn = new Mode_SelectScreen(user);
+					ModeSelectScreen scrn = new ModeSelectScreen(user);
 					setScoretoZero();
 					failed.dispose();
 					

@@ -1,4 +1,6 @@
-public class Easy extends MODE{
+package org.deneme.organdoku.screen;
+
+public class Easy extends Mode {
 	private byte[][] areaNormal;
 	
 	private boolean[][] masksNormal;

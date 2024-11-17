@@ -1,3 +1,5 @@
+package org.deneme.organdoku.screen;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;

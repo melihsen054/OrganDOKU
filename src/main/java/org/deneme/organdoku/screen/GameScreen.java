@@ -1,6 +1,6 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
+package org.deneme.organdoku.screen;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,7 +18,9 @@ import javax.swing.JToggleButton;
 	
 */
 
-public class Game_SCREEN extends JFrame implements DESIGN{
+public class GameScreen extends JFrame {
+	Font fnt = new Font("Bodoni MT Black",30, 30); // constant variable for unary font design
+
 	private String [] iconpaths={"src/Heart.jpg","src/Blood.png","src/Colon.png","src/Cornea.png",// paths for icon
 			"src/Kidney.png","src/Liver.png","src/Lung.png","src/Marrow.jpg","src/this_man.jpg"};
 	private ImageIcon icon;
@@ -52,7 +54,7 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 	JLabel mistake= new JLabel("0");
 	private int mistakes=0;
 	JPanel scorepanel= new JPanel();
-	JLabel scorelabel= new JLabel("Score :");
+	JLabel scorelabel= new JLabel("org.deneme.organdoku.screen.Score :");
 	JLabel score= new JLabel("0");
 	JPanel duzpanel = new JPanel();
 	JScrollBar bar = new JScrollBar();
@@ -68,12 +70,12 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 	Toggle_Writer marrow = new Toggle_Writer(7);
 	Toggle_Writer he = new Toggle_Writer(8);
 ///////////////////////////////////////////////////////////////////////
-	MODE level; //this class involves a MODE variable
-	USER user;
+	Mode level; //this class involves a org.deneme.organdoku.screen.MODE variable
+	User user;
 	JFrame endFrame = new JFrame();
 	JButton endButton = new JButton("GIVE UP");
 ///////////////////////////////////////////////////////////////////////
-	public Game_SCREEN(MODE lvl,USER user) {
+	public GameScreen(Mode lvl, User user) {
 		level = lvl;
 		level.setScoretoZero();
 		System.out.println(lvl.getscore());
@@ -110,12 +112,13 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 		selectbuttonpanel.add(lung);
 		selectbuttonpanel.add(marrow);
 		selectbuttonpanel.add(he);
-	}@Override
+	}
+
 	public void design() {
 		
 		gamearadesign(level);
 		
-		timelabel.setFont(fnt); // "fnt" constant comes from DESIGN interface
+		timelabel.setFont(fnt); // "fnt" constant comes from org.deneme.organdoku.screen.DESIGN interface
 		remaninglabel.setFont(fnt);
 		remaning.setFont(fnt);
 		mistakeLabel.setFont(fnt);
@@ -180,7 +183,7 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 		
 		actionpanel.add(scorepanel);
 		
-		if(level instanceof Normal){ // if user chooses Normal mode, we add a panel in order to count mistakes
+		if(level instanceof Normal){ // if user chooses org.deneme.organdoku.screen.Normal mode, we add a panel in order to count mistakes
 			mistakepanel.add(mistakeLabel);
 			mistakepanel.add(mistake);
 			actionpanel.add(mistakepanel);
@@ -198,7 +201,7 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 		});
 		actionpanel.add(endButton);
 	}
-	private void gamearadesign(MODE lvl){ // game area design ( 9x9 section ) with buttons
+	private void gamearadesign(Mode lvl){ // game area design ( 9x9 section ) with buttons
 		this.level = lvl;
 		gamepanel.add(gamehouse1);
 		gamepanel.add(gamehouse2);
@@ -445,18 +448,18 @@ public class Game_SCREEN extends JFrame implements DESIGN{
 							dispose();
 						
 						}
-						else if(level instanceof DKA){
-							((DKA) level).EndScreen(scorepanel,timepanel,mistakepanel,user);
+						else if(level instanceof DontKillAnybody){
+							((DontKillAnybody) level).EndScreen(scorepanel,timepanel,mistakepanel,user);
 							dispose();
 						}
 					}
 					
 					}
 					else{
-						if(level instanceof DKA){ //this is the fail screen setup for DKA, because one mistake stops the game
+						if(level instanceof DontKillAnybody){ //this is the fail screen setup for org.deneme.organdoku.screen.DKA, because one mistake stops the game
 							timeCount.clock.stop();
 							dispose();
-							((DKA) level).FailScreen(timeCount.getDisplay(),user.getName(),level.getScore().getscore(),user);//dka method gelecek
+							((DontKillAnybody) level).FailScreen(timeCount.getDisplay(),user.getName(),level.getScore().getscore(),user);//dka method gelecek
 						}
 						else{//
 						level.getScore().wrongscore();

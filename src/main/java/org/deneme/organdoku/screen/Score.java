@@ -1,3 +1,4 @@
+package org.deneme.organdoku.screen;
 
 public class Score { // for the score CALCULATIONS
 	private int score=0;

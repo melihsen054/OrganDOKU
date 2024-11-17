@@ -1,9 +1,11 @@
+package org.deneme.organdoku.screen;
+
 import java.io.File;
 import java.io.Serializable;
 
 //This class is to manage the users easily
 
-public class USER implements Serializable{ 
+public class User implements Serializable{
 	private String name = "Mr/Mrs"; //field
 	private int age=0;
 	private boolean gender=true;
@@ -11,11 +13,11 @@ public class USER implements Serializable{
 	private String password;
 	private File file;
 	
-	public USER(){
+	public User(){
 		
 	}
 	
-	public USER(String name,int age,boolean gender , String username , String password) { // constructor for user
+	public User(String name, int age, boolean gender , String username , String password) { // constructor for user
 		setName(name);
 		setAge(age);
 		setGender(gender);
